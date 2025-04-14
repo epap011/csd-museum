@@ -1,6 +1,6 @@
 let slides         = [];
 let currentSlide   = 0;
-const interval     = 5000;
+const interval     = 15000;
 const fadeDuration = 1000;
 
 const slideContainer = document.getElementById('slide-container');
