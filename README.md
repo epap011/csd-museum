@@ -2,9 +2,7 @@
 
 **CSD Museum** is a web application that allows users to explore and learn about the history of the Computer Science Department at the University of Crete.
 
-#image{width=100%}
 ![alt text](https://github.com/epap011/csd-museum/blob/main/cover.png?raw=true)
-
 
 ---
 
