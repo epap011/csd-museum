@@ -44,3 +44,15 @@ sudo docker stop <container_id>
 
 # Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.
+
+## Content Contribution
+If you would like to contribute content (images, text, etc.) to the museum, please follow these steps:
+
+1. Go in slides folder and create a markdown file with the content you want to add. There is a template file `TEMPLATE.md` that you can use as a reference.
+
+2. Add the image of the content in the `resources/images` folder. The image name should be the same as the markdown file name (e.g., `TEMPLATE.jpg`). If you have multiple images, you can name them `TEMPLATE_a.jpg`, `TEMPLATE_b.jpg`, etc. and add them in the markdown file.
+
+3. Update the manifest file `manifest.json` by adding slides/<your_file_name>.md in the `slides` array. The order of the slides in the manifest file will determine the order in which they are displayed in the application.
+
+## UI/UX Contribution
+Obviously, the UI/UX of the application is not the best. If you have suggestions for improvements or new features, please open an issue or submit a pull request.
