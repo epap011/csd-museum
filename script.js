@@ -1,8 +1,10 @@
-let slides         = [];
-let currentSlide   = 0;
-const interval     = 15000;
+let slides = [];
+let currentSlide = 0;
+const interval = 15000;
 const fadeDuration = 1000;
+let startTime;
 
+const progressBar = document.getElementById('progress-bar');
 const slideContainer = document.getElementById('slide-container');
 
 fetch('manifest.json')
@@ -12,35 +14,55 @@ fetch('manifest.json')
     startSlideShow();
   });
 
-  function loadSlide(index) {
-    slideContainer.style.opacity = 0;
+function resetProgressBar() {
+  progressBar.value = 0;
+  startTime = Date.now();
+}
+
+function updateProgressBar() {
+  const elapsed = Date.now() - startTime;
+  const progress = (elapsed / interval) * 100;
   
-    setTimeout(() => {
-      fetch(slides[index])
-        .then(res => res.text())
-        .then(md => {
-          const html = marked.parse(md);
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = html;
+  progressBar.value = progress;
   
-          const allElements = Array.from(tempDiv.children);
-          const imageEl = allElements.find(el => el.tagName === 'P' && el.querySelector('img'));
-          const textEls = allElements.filter(el => el !== imageEl);
-  
-          const textHTML = textEls.map(el => el.outerHTML).join('');
-          const imageHTML = imageEl ? imageEl.outerHTML : '';
-  
-          slideContainer.innerHTML = `
-            <div class="slide-content">
-              <div class="text">${textHTML}</div>
-              <div class="image">${imageHTML}</div>
-            </div>
-          `;
-  
-          slideContainer.style.opacity = 1;
-        });
-    }, fadeDuration);
+  if (progress < 100) {
+    requestAnimationFrame(updateProgressBar);
   }
+}
+
+function loadSlide(index) {
+  slideContainer.style.opacity = 0;
+
+  resetProgressBar();
+
+  setTimeout(() => {
+    fetch(slides[index])
+      .then(res => res.text())
+      .then(md => {
+        const html = marked.parse(md);
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+
+        const allElements = Array.from(tempDiv.children);
+        const imageEl = allElements.find(el => el.tagName === 'P' && el.querySelector('img'));
+        const textEls = allElements.filter(el => el !== imageEl);
+
+        const textHTML = textEls.map(el => el.outerHTML).join('');
+        const imageHTML = imageEl ? imageEl.outerHTML : '';
+
+        slideContainer.innerHTML = `
+          <div class="slide-content">
+            <div class="text">${textHTML}</div>
+            <div class="image">${imageHTML}</div>
+          </div>
+        `;
+
+        slideContainer.style.opacity = 1;
+
+        updateProgressBar();
+      });
+  }, fadeDuration);
+}
 
 function startSlideShow() {
   loadSlide(currentSlide);

@@ -14,7 +14,38 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+    }
+
+    #progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #333;
+      z-index: 9999;
+    }
+
+    progress {
+      width: 100%;
+      height: 100%;
+      appearance: none;
+      border: none;
+      background-color: transparent;
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: #ddd;
+    }
+
+    progress::-webkit-progress-value {
+      background-color: #800080;
+      transition: width 1s ease;
+    }
+
+    progress::-moz-progress-bar {
+      background-color: #800080;
     }
 
     #slide-container {
@@ -23,29 +54,24 @@
       font-size: 1.4rem;
       line-height: 1.4;
       transition: opacity 1s ease;
-      opacity: 1;
     }
 
     .slide-content {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 2em;
-      padding-left: 2em;
-      padding-right: 2em;
+      padding: 0 2em;
       margin-bottom: 4em;
     }
 
     .slide-content .text {
       flex: 2;
-      max-width: 100%;
-      text-align: left;
+      min-width: 300px;
     }
 
     .slide-content .image {
       flex: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      min-width: 250px;
     }
 
     .slide-content img {
@@ -65,24 +91,21 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height:75px;
+      height: 75px;
       background-color: #ffffff;
       color: black;
-      text-align: center;
-      font-size: 1.2rem;
-      padding: 0.5em;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
       display: flex;
-      justify-content: left;
-      padding-left: 2em;
-      padding-right: 2em;
+      align-items: center;
+      gap: 2em;
+      padding: 0.5em 2em;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
       z-index: 100;
     }
 
     #banner img {
       height: auto;
+      max-height: 60px;
       object-fit: contain;
-      margin-right: 4em;
     }
 
     #banner a {
@@ -93,47 +116,55 @@
     @media (max-width: 768px) {
       body {
         flex-direction: column;
-        justify-content: flex-start;
-        height: auto;
+        align-items: stretch;
         padding-bottom: 100px;
-        text-align: left;
       }
 
       .slide-content {
         flex-direction: column;
-        gap: 1em;
-        margin-bottom: 2em;
         padding: 0 1em;
+        gap: 1em;
       }
 
-      .slide-content .text, .slide-content .image {
-        width: 100%;
-        text-align: left;
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
       }
 
-      .slide-content img {
-        max-width: 80%;
+      .slide-content .text {
+        order: 0;
+      }
+
+      .slide-content .image {
+        order: 1;
+      }
+
+      #slide-container {
+        font-size: 1.1rem;
       }
 
       #banner {
-        flex-direction: row;
-        gap: 0.5em;
-        padding: 1em;
-        text-align: center;
+        flex-wrap: wrap;
+        justify-content: center;
         height: auto;
+        gap: 1em;
       }
-      
+
       #banner img {
-        max-width: 80%;
-        margin-right: 0;
         height: 50px;
       }
     }
+
   </style>
 </head>
 
 <body>
+  <div id="progress-bar-container">
+    <progress id="progress-bar" value="0" max="100"></progress>
+  </div>
+
   <div id="slide-container">Loading...</div>
+
   <div id="banner">
     <img src="resources/images/UoC_logo_with_text.png" alt="Retro Computer 1" />
     <img src="resources/images/40yearsLogo.png" alt="Retro Computer 2" />
