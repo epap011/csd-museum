@@ -1,6 +1,6 @@
 let slides = [];
 let currentSlide = 0;
-const interval = 15000;
+const interval = 5000;
 const fadeDuration = 1000;
 let startTime;
 
@@ -47,13 +47,21 @@ function loadSlide(index) {
         const imageEl = allElements.find(el => el.tagName === 'P' && el.querySelector('img'));
         const textEls = allElements.filter(el => el !== imageEl);
 
-        const textHTML = textEls.map(el => el.outerHTML).join('');
+        const headerEl = textEls.find(el => el.tagName.startsWith('H'));
+        const bodyTextEls = textEls.filter(el => el !== headerEl);
+
+        const headerHTML = headerEl ? headerEl.outerHTML : '';
+        const textHTML = bodyTextEls.map(el => el.outerHTML).join('');
+
         const imageHTML = imageEl ? imageEl.outerHTML : '';
 
         slideContainer.innerHTML = `
           <div class="slide-content">
-            <div class="text">${textHTML}</div>
-            <div class="image">${imageHTML}</div>
+            <div class="header">${headerHTML}</div>
+            <div class="body">
+              <div class="text">${textHTML}</div>
+              <div class="image">${imageHTML}</div>
+            </div>
           </div>
         `;
 
@@ -63,6 +71,8 @@ function loadSlide(index) {
       });
   }, fadeDuration);
 }
+
+
 
 function startSlideShow() {
   loadSlide(currentSlide);
