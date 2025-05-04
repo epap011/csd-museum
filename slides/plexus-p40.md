@@ -12,4 +12,4 @@
 
 Οι P/40 μπορούσαν να διασυνδεθούν σε ένα τοπικό δίκτυο Xerox Ethernet.
 
-![Plexus P/40](../resources/images/plexus-p40-a.jpg)
+![Plexus P/40](../assets/images/plexus-p40-a.jpg)
