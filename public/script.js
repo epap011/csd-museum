@@ -1,10 +1,9 @@
 let slides = [];
 let currentSlide = 0;
-const interval = 5000;
+const interval = 60000;
 const fadeDuration = 1000;
 let startTime;
 let slideInterval = null;
-let isPaused = false;
 
 const progressBar = document.getElementById('progress-bar');
 const slideContainer = document.getElementById('slide-container');
