@@ -14,14 +14,12 @@ document.getElementById('prev-button').addEventListener('click', () => {
   if (slides.length === 0) return;
   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
   loadSlide(currentSlide);
-  slideStartTime = Date.now();
 });
 
 document.getElementById('next-button').addEventListener('click', () => {
   if (slides.length === 0) return;
   currentSlide = (currentSlide + 1) % slides.length;
   loadSlide(currentSlide);
-  slideStartTime = Date.now();
 });
 
 // Fetch and start
@@ -39,7 +37,7 @@ function resetProgressBar() {
 }
 
 function updateProgressBar() {
-  if (isPaused || isMobile()) return;
+  if (isMobile()) return;
 
   const elapsed = Date.now() - startTime;
   const progress = (elapsed / interval) * 100;
@@ -93,16 +91,16 @@ function loadSlide(index) {
 function startSlideShow() {
   loadSlide(currentSlide);
 
+  if (slideInterval) clearInterval(slideInterval);
+
   if (!isMobile()) {
     slideInterval = setInterval(() => {
-      if (!isPaused) {
-        currentSlide = (currentSlide + 1) % slides.length;
-        loadSlide(currentSlide);
-      }
+    currentSlide = (currentSlide + 1) % slides.length;
+    loadSlide(currentSlide);
     }, interval);
   }
 }
 
 function isMobile() {
-  return window.innerWidth <= 768;
+  return window.innerWidth <= 768;;
 }
