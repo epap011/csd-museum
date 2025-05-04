@@ -2,8 +2,8 @@
 <html lang="el">
 <head>
   <meta charset="UTF-8" />
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CSD Museum </title>
   <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -20,6 +20,7 @@
       min-height: 100vh;
       height: 100%;
       flex-direction: column;
+      padding-bottom: 80px; /* Added space for the fixed banner */
     }
 
     #progress-bar-container {
@@ -60,6 +61,7 @@
       font-size: 1.5rem;
       line-height: 1.4;
       transition: opacity 1s ease;
+      padding-bottom: 100px; /* Ensure space for banner */
     }
 
     .slide-content {
@@ -82,7 +84,7 @@
       flex-wrap: wrap;
       gap: 2em;
       justify-content: left;
-      padding: 0 1em
+      padding: 0 1em;
     }
 
     .slide-content .text {
@@ -130,29 +132,27 @@
       bottom: 0;
       left: 0;
       right: 0;
-      width: 100%;
       height: 80px;
       background-color: #ffffff;
-      color: black;
       display: flex;
       align-items: center;
+      justify-content: center; /* center logos horizontally */
+      padding: 0 2em;
       gap: 2em;
-      padding: 0.5em 2em;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      justify-content: center;
       flex-wrap: wrap;
     }
 
     #banner img {
-      height: auto;
-      max-height: 80px;
+      height: 50px;
+      max-height: 100%;
       object-fit: contain;
+      transition: transform 0.2s ease;
     }
 
-    #banner a {
-      color: black;
-      text-decoration: none;
+    #banner img:hover {
+      transform: scale(1.05);
     }
 
     #mobile-controls {
@@ -161,9 +161,9 @@
 
     @media (max-width: 768px) {
       body {
-        padding-bottom: 100px;
+        padding-bottom: 120px;
       }
-      
+
       h1 {
         font-size: 2rem;
         margin-bottom: 1rem;
@@ -176,13 +176,15 @@
       .slide-content {
         flex-direction: column;
         padding: 0;
-        gap: 1em;
-        width: 100%;  
+        gap: 0.5em;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .slide-content .body {
         flex-direction: column;
         width: 100%;
+        gap: 0;
       }
 
       .slide-content .image {
@@ -190,7 +192,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0;
         width: 90%;
         box-sizing: border-box;
       }
@@ -198,12 +199,20 @@
       .slide-content .text {
         order: 2;
         text-align: left;
-        padding: 0;
         width: 100%;
+        box-sizing: border-box;
+        padding-left: 0em;
+        margin: 0;
+      }
+
+      .slide-content .header {
+        padding: 0 1em;
       }
 
       #slide-container {
         font-size: 1.1rem;
+        overflow-x: hidden; /* Prevent horizontal overflow */
+        word-wrap: break-word; /* Break long words to fit */
       }
 
       #mobile-controls {
@@ -212,11 +221,11 @@
         justify-content: space-between;
         gap: 1em;
         position: fixed;
-        bottom: 110px;
+        bottom: 90px;
         left: 0;
         right: 0;
         margin: 0 auto;
-        max-width: 500px;
+        max-width: 100%;
         padding: 0 1em;
         z-index: 1001;
       }
@@ -231,14 +240,24 @@
         cursor: pointer;
         font-family: 'Victor Mono', monospace;
         box-shadow: 0 0 5px #1c9db4;
-        white-space: nowrap;
         min-width: 60px;
         text-align: center;
         flex: 1;
       }
 
+      #banner {
+        height: 60px;
+        justify-content: center;
+        gap: 1em;
+        padding: 0.5em;
+      }
+
       #banner img {
         height: 50px;
+      }
+
+      .qr-code {
+        display: none;
       }
     }
   </style>
@@ -259,7 +278,7 @@
   <div id="banner">
     <img src="resources/images/UoC_logo_with_text.png" alt="UOC-Logo" />
     <img src="resources/images/40yearsLogo.png" alt="CSD-40-Years" />
-    <img src="resources/images/qr-code.png" alt="QR-code" />
+    <img src="resources/images/qr-code.png" alt="QR-code" class="qr-code" />
   </div>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="script.js"></script>
