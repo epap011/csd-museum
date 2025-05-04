@@ -18,6 +18,7 @@
       justify-content: center;
       min-height: 100vh;
       height: 100%;
+      flex-direction: column;
     }
 
     #progress-bar-container {
@@ -70,9 +71,9 @@
 
     .slide-content .header {
       width: 100%;
-      text-align: left; /* Centering the header */
-      margin: 0; /* Remove any default margin */
-      padding: 0 2em; /* Ensure padding on both sides, same as description */
+      text-align: left;
+      margin: 0;
+      padding: 0 2em;
     }
 
     .slide-content .body {
@@ -138,6 +139,8 @@
       padding: 0.5em 2em;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
       z-index: 1000;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     #banner img {
@@ -157,8 +160,6 @@
 
     @media (max-width: 768px) {
       body {
-        flex-direction: column;
-        align-items: stretch;
         padding-bottom: 100px;
       }
       
@@ -177,19 +178,8 @@
         gap: 1em;
       }
 
-      .slide-content {
-        flex-direction: column;
-        padding: 0 1em;
-        gap: 1em;
-      }
-
       .slide-content .body {
         flex-direction: column;
-        display: flex;
-      }
-
-      .slide-content .header {
-        order: 0;
       }
 
       .slide-content .image {
@@ -214,7 +204,7 @@
         justify-content: space-between;
         gap: 1em;
         position: fixed;
-        bottom: 90px;
+        bottom: 110px;
         left: 0;
         right: 0;
         margin: 0 auto;
@@ -224,7 +214,7 @@
       }
 
       #mobile-controls button {
-        background-color: #8b34d3 ;
+        background-color: #8b34d3;
         color: white;
         border: none;
         padding: 0.6em 1.2em;
@@ -232,25 +222,17 @@
         border-radius: 6px;
         cursor: pointer;
         font-family: 'Victor Mono', monospace;
-        box-shadow: 0 0 5px #1c9db4 ;
+        box-shadow: 0 0 5px #1c9db4;
         white-space: nowrap;
         min-width: 60px;
         text-align: center;
         flex: 1;
       }
 
-      #banner {
-        flex-wrap: wrap;
-        justify-content: left;
-        height: auto;
-        gap: 1em;
-      }
-
       #banner img {
         height: 50px;
       }
     }
-
   </style>
 </head>
 
