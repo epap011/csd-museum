@@ -150,6 +150,10 @@
       text-decoration: none;
     }
 
+    #mobile-controls {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       body {
         flex-direction: column;
@@ -160,6 +164,10 @@
       h1 {
         font-size: 2rem;
         margin-bottom: 1rem;
+      }
+
+      #progress-bar-container {
+        display: none;
       }
 
       .slide-content {
@@ -195,6 +203,37 @@
         font-size: 1.1rem;
       }
 
+      #mobile-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1em;
+        position: fixed;
+        bottom: 90px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 500px;
+        padding: 0 1em;
+        z-index: 1001;
+      }
+
+      #mobile-controls button {
+        background-color: #1edd1e;
+        color: black;
+        border: none;
+        padding: 0.6em 1.2em;
+        font-size: 1.2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: 'Victor Mono', monospace;
+        box-shadow: 0 0 5px #1edd1e;
+        white-space: nowrap;
+        min-width: 60px;
+        text-align: center;
+        flex: 1;
+      }
+
       #banner {
         flex-wrap: wrap;
         justify-content: left;
@@ -216,6 +255,11 @@
   </div>
 
   <div id="slide-container">Loading...</div>
+
+  <div id="mobile-controls">
+    <button id="prev-button">⟵</button>
+    <button id="next-button">⟶</button>
+  </div>
 
   <div id="banner">
     <img src="resources/images/UoC_logo_with_text.png" alt="UOC-Logo" />
