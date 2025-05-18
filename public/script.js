@@ -1,10 +1,14 @@
 let slides = [];
 let currentSlide = 0;
-let interval;
-const normalDuration = 5000; // 10 seconds for content slides
-const shortDuration = 2000;   // 4 seconds for year slides
-const fadeDuration = 1000;
+let slideTimeout;
 let startTime;
+let paused = false;
+let elapsedBeforePause = 0;
+let progressAnimationFrame;
+
+const normalDuration = 10000;
+const shortDuration = 3000;
+const fadeDuration = 1000;
 
 const progressBar = document.getElementById('progress-bar');
 const slideContainer = document.getElementById('slide-container');
@@ -21,7 +25,13 @@ document.getElementById('next-button').addEventListener('click', () => {
   loadSlide(currentSlide);
 });
 
-// Fetch and start
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    togglePause();
+  }
+});
+
 fetch('manifest.json')
   .then(res => res.json())
   .then(data => {
@@ -32,31 +42,70 @@ fetch('manifest.json')
 function resetProgressBar() {
   if (isMobile()) return;
   progressBar.value = 0;
+  elapsedBeforePause = 0;
   startTime = Date.now();
 }
 
 function updateProgressBar() {
   if (isMobile()) return;
 
-  const elapsed = Date.now() - startTime;
-  const progress = (elapsed / interval) * 100;
+  const elapsed = Date.now() - startTime + elapsedBeforePause;
+  const current = slides[currentSlide];
+  const duration = current.type === "year" ? shortDuration : normalDuration;
+  const progress = (elapsed / duration) * 100;
   progressBar.value = progress;
 
-  if (progress < 100) {
-    requestAnimationFrame(updateProgressBar);
+  if (!paused && progress < 100) {
+    progressAnimationFrame = requestAnimationFrame(updateProgressBar);
+  }
+}
+
+function scheduleNextSlide(remaining) {
+  clearTimeout(slideTimeout);
+  if (paused) return;
+
+  slideTimeout = setTimeout(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    loadSlide(currentSlide);
+  }, remaining);
+}
+
+function startTimer() {
+  const current = slides[currentSlide];
+  const duration = current.type === "year" ? shortDuration : normalDuration;
+
+  resetProgressBar();
+  startTime = Date.now();
+  scheduleNextSlide(duration);
+  updateProgressBar();
+}
+
+function togglePause() {
+  if (!paused) {
+    paused = true;
+    clearTimeout(slideTimeout);
+    cancelAnimationFrame(progressAnimationFrame);
+
+    elapsedBeforePause += Date.now() - startTime;
+  } else {
+    paused = false;
+
+    const current = slides[currentSlide];
+    const duration = current.type === "year" ? shortDuration : normalDuration;
+
+    const remaining = duration - elapsedBeforePause;
+    startTime = Date.now();
+    scheduleNextSlide(remaining);
+    updateProgressBar();
   }
 }
 
 function loadSlide(index) {
   const slide = slides[index];
   slideContainer.style.opacity = 0;
-  resetProgressBar();
 
   setTimeout(() => {
     if (slide.type === "content") {
-      interval = normalDuration;
-      startTime = Date.now();
-
       fetch(slide.path)
         .then(res => res.text())
         .then(md => {
@@ -86,13 +135,10 @@ function loadSlide(index) {
           `;
 
           slideContainer.style.opacity = 1;
-          updateProgressBar();
+
+          if (!paused) startTimer();
         });
-
     } else if (slide.type === "year") {
-      interval = shortDuration;
-      startTime = Date.now();
-
       slideContainer.innerHTML = `
         <div class="year-slide">
           <h1 class="year-heading">${slide.year}</h1>
@@ -101,28 +147,14 @@ function loadSlide(index) {
       `;
 
       slideContainer.style.opacity = 1;
-      updateProgressBar();
+
+      if (!paused) startTimer();
     }
   }, fadeDuration);
 }
 
 function startSlideShow() {
   loadSlide(currentSlide);
-
-  if (!isMobile()) {
-    scheduleNextSlide();
-  }
-}
-
-function scheduleNextSlide() {
-  const current = slides[currentSlide];
-  const duration = current.type === "year" ? shortDuration : normalDuration;
-
-  setTimeout(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    loadSlide(currentSlide);
-    scheduleNextSlide();
-  }, duration);
 }
 
 function isMobile() {
