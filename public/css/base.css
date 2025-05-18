@@ -24,12 +24,11 @@ body {
 
 h1 {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 1.2rem;
   color: var(--highlight-color);
   text-shadow:
     0 0 2px var(--highlight-color),
     0 0 4px var(--highlight-color),
-    0 0 6px #800080;
+    0 0 6px #aa04aa;
   letter-spacing: 1.5px;
 }
 

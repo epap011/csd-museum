@@ -9,8 +9,8 @@ let paused = false;
 let startTime = null;
 let elapsedBeforePause = 0;
 
-const normalDuration = 10000;
-const shortDuration = 3000;
+const normalDuration = 60000;
+const shortDuration = 4000;
 
 export function startTimer() {
   const slides = getSlides();
