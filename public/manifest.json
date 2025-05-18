@@ -1,11 +1,19 @@
 [
-  "/slides/vax-11-780.md",
-  "/slides/vax-11-750.md",
-  "/slides/vax-8600.md",
-  "/slides/microvax-2.md",
-  "/slides/convex-c-120-candia.md",
-  "/slides/ibm-3370.md",
-  "/slides/plexus-p40.md",
-  "/slides/sun3-280s-8.md"
+  { "type": "content", "path": "/slides/vax-11-780.md" },
+  { "type": "year", "year": 1980, "text": "-" },
+  { "type": "content", "path": "/slides/vax-11-750.md" },
+  { "type": "year", "year": 1982, "text": "-" },
+  { "type": "content", "path": "/slides/vax-8600.md" },
+  { "type": "year", "year": 1985, "text": "-" },
+  { "type": "content", "path": "/slides/microvax-2.md" },
+  { "type": "year", "year": 1987, "text": "-" },
+  { "type": "content", "path": "/slides/convex-c-120-candia.md" },
+  { "type": "year", "year": 1988, "text": "-" },
+  { "type": "content", "path": "/slides/ibm-3370.md" },
+  { "type": "year", "year": 1989, "text": "-" },
+  { "type": "content", "path": "/slides/plexus-p40.md" },
+  { "type": "year", "year": 1990, "text": "-" },
+  { "type": "content", "path": "/slides/sun3-280s-8.md" }
 ]
+
   

@@ -1,14 +1,14 @@
 let slides = [];
 let currentSlide = 0;
-const interval = 60000;
+let interval;
+const normalDuration = 10000; // 10 seconds for content slides
+const shortDuration = 4000;   // 4 seconds for year slides
 const fadeDuration = 1000;
 let startTime;
-let slideInterval = null;
 
 const progressBar = document.getElementById('progress-bar');
 const slideContainer = document.getElementById('slide-container');
 
-// Button listeners
 document.getElementById('prev-button').addEventListener('click', () => {
   if (slides.length === 0) return;
   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
@@ -40,7 +40,6 @@ function updateProgressBar() {
 
   const elapsed = Date.now() - startTime;
   const progress = (elapsed / interval) * 100;
-
   progressBar.value = progress;
 
   if (progress < 100) {
@@ -49,57 +48,83 @@ function updateProgressBar() {
 }
 
 function loadSlide(index) {
+  const slide = slides[index];
   slideContainer.style.opacity = 0;
   resetProgressBar();
 
   setTimeout(() => {
-    fetch(slides[index])
-      .then(res => res.text())
-      .then(md => {
-        const html = marked.parse(md);
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
+    if (slide.type === "content") {
+      interval = normalDuration;
+      startTime = Date.now();
 
-        const allElements = Array.from(tempDiv.children);
-        const imageEl = allElements.find(el => el.tagName === 'P' && el.querySelector('img'));
-        const textEls = allElements.filter(el => el !== imageEl);
+      fetch(slide.path)
+        .then(res => res.text())
+        .then(md => {
+          const html = marked.parse(md);
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = html;
 
-        const headerEl = textEls.find(el => el.tagName.startsWith('H'));
-        const bodyTextEls = textEls.filter(el => el !== headerEl);
+          const allElements = Array.from(tempDiv.children);
+          const imageEl = allElements.find(el => el.tagName === 'P' && el.querySelector('img'));
+          const textEls = allElements.filter(el => el !== imageEl);
 
-        const headerHTML = headerEl ? headerEl.outerHTML : '';
-        const textHTML = bodyTextEls.map(el => el.outerHTML).join('');
-        const imageHTML = imageEl ? imageEl.outerHTML : '';
+          const headerEl = textEls.find(el => el.tagName.startsWith('H'));
+          const bodyTextEls = textEls.filter(el => el !== headerEl);
 
-        slideContainer.innerHTML = `
-          <div class="slide-content">
-            <div class="header">${headerHTML}</div>
-            <div class="body">
-              <div class="text">${textHTML}</div>
-              <div class="image">${imageHTML}</div>
+          const headerHTML = headerEl ? headerEl.outerHTML : '';
+          const textHTML = bodyTextEls.map(el => el.outerHTML).join('');
+          const imageHTML = imageEl ? imageEl.outerHTML : '';
+
+          slideContainer.innerHTML = `
+            <div class="slide-content">
+              <div class="header">${headerHTML}</div>
+              <div class="body">
+                <div class="text">${textHTML}</div>
+                <div class="image">${imageHTML}</div>
+              </div>
             </div>
-          </div>
-        `;
+          `;
 
-        slideContainer.style.opacity = 1;
-        updateProgressBar();
-      });
+          slideContainer.style.opacity = 1;
+          updateProgressBar();
+        });
+
+    } else if (slide.type === "year") {
+      interval = shortDuration;
+      startTime = Date.now();
+
+      slideContainer.innerHTML = `
+        <div class="year-slide">
+          <h1 class="year-heading">${slide.year}</h1>
+          ${slide.text ? `<p class="year-subtitle">${slide.text}</p>` : ''}
+        </div>
+      `;
+
+      slideContainer.style.opacity = 1;
+      updateProgressBar();
+    }
   }, fadeDuration);
 }
 
 function startSlideShow() {
   loadSlide(currentSlide);
 
-  if (slideInterval) clearInterval(slideInterval);
-
   if (!isMobile()) {
-    slideInterval = setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    loadSlide(currentSlide);
-    }, interval);
+    scheduleNextSlide();
   }
 }
 
+function scheduleNextSlide() {
+  const current = slides[currentSlide];
+  const duration = current.type === "year" ? shortDuration : normalDuration;
+
+  setTimeout(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    loadSlide(currentSlide);
+    scheduleNextSlide();
+  }, duration);
+}
+
 function isMobile() {
-  return window.innerWidth <= 768;;
+  return window.innerWidth <= 768;
 }
