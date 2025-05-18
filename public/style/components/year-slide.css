@@ -1,0 +1,70 @@
+/* year-slide.css */
+.year-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: black;
+    color: #00ffcc;
+    animation: fadeIn 1s ease-in-out;
+    position: relative; /* for CRT scanline effect */
+  }
+  
+  .year-heading {
+    font-family: 'VT323', monospace;
+    font-size: 8rem;
+    text-shadow:
+      0 0 5px #00ffcc,
+      0 0 10px #00ffcc,
+      0 0 20px #00ffcc,
+      0 0 40px #00ffcc;
+    animation: flicker 2s infinite;
+  }
+  
+  .year-subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 2.5rem;
+    color: #00ffcc;
+    margin-top: 0.5rem;
+    text-align: center;
+    text-shadow:
+      0 0 3px #00ffcc,
+      0 0 7px #00ffcc;
+    animation: flicker 3s infinite;
+  }
+  
+  /* Flicker animation */
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      opacity: 1;
+    }
+    20%, 24%, 55% {
+      opacity: 0.4;
+    }
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    } 
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* CRT scanline effect */
+  .year-slide::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 255, 204, 0.05),
+      rgba(0, 255, 204, 0.05) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+  

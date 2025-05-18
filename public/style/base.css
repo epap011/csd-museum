@@ -1,0 +1,38 @@
+/* base.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Victor Mono', monospace;
+    background-color: black;
+    color: #1edd1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    height: 100%;
+    flex-direction: column;
+    padding-bottom: 80px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    color: #BF00FF;
+    text-shadow:
+      0 0 2px #BF00FF,
+      0 0 4px #BF00FF,
+      0 0 6px #800080;
+    letter-spacing: 1.5px;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 120px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
