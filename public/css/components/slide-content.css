@@ -34,6 +34,7 @@
 .slide-content .text {
   flex: 3;
   min-width: 300px;
+  line-height: 2;
   padding: 1em;
 }
 

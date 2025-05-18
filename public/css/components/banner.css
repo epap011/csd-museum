@@ -1,0 +1,45 @@
+#banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 0 2em;
+  gap: 2em;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+  
+#banner img {
+  height: 80px;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+#banner img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  #banner {
+    height: 60px;
+    justify-content: center;
+    gap: 1em;
+    padding: 0.5em;
+  }
+
+  #banner img {
+    height: 50px;
+  }
+
+  .qr-code {
+    display: none;
+  }
+}
+  
