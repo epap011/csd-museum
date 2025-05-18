@@ -20,6 +20,18 @@ document.addEventListener('keydown', (e) => {
   if (e.code === 'Space') {
     e.preventDefault();
     togglePause();
+  } else if (e.code === 'ArrowLeft') {
+    e.preventDefault();
+    if (getSlides().length === 0) return;
+    let newIndex = (getCurrentSlideIndex() - 1 + getSlides().length) % getSlides().length;
+    setCurrentSlideIndex(newIndex);
+    loadSlide(newIndex);
+  } else if (e.code === 'ArrowRight') {
+    e.preventDefault();
+    if (getSlides().length === 0) return;
+    let newIndex = (getCurrentSlideIndex() + 1) % getSlides().length;
+    setCurrentSlideIndex(newIndex);
+    loadSlide(newIndex);
   }
 });
 
