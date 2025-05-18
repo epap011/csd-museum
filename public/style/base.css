@@ -1,38 +1,46 @@
 /* base.css */
+
+:root {
+  --padding-bottom-desktop: 80px;
+  --padding-bottom-mobile: 120px;
+  --primary-color: #1edd1e;
+  --highlight-color: #BF00FF;
+  --font-family-mono: 'Victor Mono', monospace;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Victor Mono', monospace;
-    background-color: black;
-    color: #1edd1e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    height: 100%;
-    flex-direction: column;
-    padding-bottom: 80px;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-mono);
+  background-color: black;
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100%;
+  padding-bottom: var(--padding-bottom-desktop);
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.2rem;
+  color: var(--highlight-color);
+  text-shadow:
+    0 0 2px var(--highlight-color),
+    0 0 4px var(--highlight-color),
+    0 0 6px #800080;
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: var(--padding-bottom-mobile);
   }
-  
+
   h1 {
-    font-size: 3rem;
-    margin-bottom: 1.2rem;
-    color: #BF00FF;
-    text-shadow:
-      0 0 2px #BF00FF,
-      0 0 4px #BF00FF,
-      0 0 6px #800080;
-    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
   }
-  
-  @media (max-width: 768px) {
-    body {
-      padding-bottom: 120px;
-    }
-  
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-  }
-  
+}
