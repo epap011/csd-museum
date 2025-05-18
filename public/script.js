@@ -1,8 +1,8 @@
 let slides = [];
 let currentSlide = 0;
 let interval;
-const normalDuration = 10000; // 10 seconds for content slides
-const shortDuration = 4000;   // 4 seconds for year slides
+const normalDuration = 5000; // 10 seconds for content slides
+const shortDuration = 2000;   // 4 seconds for year slides
 const fadeDuration = 1000;
 let startTime;
 

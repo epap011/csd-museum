@@ -1,19 +1,27 @@
 [
+  { "type": "year", "year": 1980, "text": "VAX 11 Series launch" },
   { "type": "content", "path": "/slides/vax-11-780.md" },
-  { "type": "year", "year": 1980, "text": "-" },
+  
+  { "type": "year", "year": 1980, "text": "VAX 11-750 introduced" },
   { "type": "content", "path": "/slides/vax-11-750.md" },
-  { "type": "year", "year": 1982, "text": "-" },
-  { "type": "content", "path": "/slides/vax-8600.md" },
-  { "type": "year", "year": 1985, "text": "-" },
-  { "type": "content", "path": "/slides/microvax-2.md" },
-  { "type": "year", "year": 1987, "text": "-" },
-  { "type": "content", "path": "/slides/convex-c-120-candia.md" },
-  { "type": "year", "year": 1988, "text": "-" },
-  { "type": "content", "path": "/slides/ibm-3370.md" },
-  { "type": "year", "year": 1989, "text": "-" },
+  
+  { "type": "year", "year": 1982, "text": "Vicom Image Processor released" },
+  { "type": "content", "path": "/slides/vicom-image-processor.md" }, 
+  
+  { "type": "year", "year": 1980, "text": "Plexus P40 computer launched" },
   { "type": "content", "path": "/slides/plexus-p40.md" },
-  { "type": "year", "year": 1990, "text": "-" },
-  { "type": "content", "path": "/slides/sun3-280s-8.md" }
+  
+  { "type": "year", "year": 1980, "text": "VAX 8600 high-performance system" },
+  { "type": "content", "path": "/slides/vax-8600.md" },
+  
+  { "type": "year", "year": 1985, "text": "MicroVAX II released" },
+  { "type": "content", "path": "/slides/microvax-2.md" },
+  
+  { "type": "year", "year": 1987, "text": "Sun3 280S-8 workstation" },
+  { "type": "content", "path": "/slides/sun3-280s-8.md" },
+  
+  { "type": "year", "year": 1990, "text": "Convex C-120 'Candia' launched" },
+  { "type": "content", "path": "/slides/convex-c-120-candia.md" }
 ]
 
   
