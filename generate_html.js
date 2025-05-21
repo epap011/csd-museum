@@ -33,15 +33,23 @@ async function generateHTML() {
         <title>${path.basename(file, '.md')}</title>
         <link href="/css/base.css" rel="stylesheet" />
         <link href="/css/components/slide-content.css" rel="stylesheet" />
+        <link href="/css/components/footer.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap" rel="stylesheet">
       </head>
       <body>
-        <div class="slide-content">
-          <div class="header">${headerHTML}</div>
-          <div class="body">
-            <div class="text">${paragraphs}</div>
-            <div class="image">${imageHTML}</div>
+        <div id="slide-container">
+          <div class="slide-content">
+            <div class="header">${headerHTML}</div>
+            <div class="body">
+              <div class="text">${paragraphs}</div>
+              <div class="image">${imageHTML}</div>
+            </div>
           </div>
+        </div>
+        <div id="footer">
+          <img src="/assets/images/UoC_logo_with_text.png" alt="UOC-Logo" />
+          <img src="/assets/images/40yearsLogo.png" alt="CSD-40-Years" />
+          <img src="/assets/images/qr-code.png" alt="QR-code" class="qr-code" />
         </div>
       </body>
       </html>

@@ -13,6 +13,7 @@ const normalDuration = 60000;
 const shortDuration = 4000;
 
 export function startTimer() {
+  if (isMobile()) return;
   const slides = getSlides();
   const currentSlide = getCurrentSlideIndex();
   const current = slides[currentSlide];
@@ -29,6 +30,7 @@ export function startTimer() {
 }
 
 function scheduleNextSlide(remaining) {
+  if (isMobile()) return;
   clearTimeout(slideTimeout);
   if (paused) return;
 
@@ -42,6 +44,7 @@ function scheduleNextSlide(remaining) {
 }
 
 export function togglePause() {
+  if (isMobile()) return;
   const slides = getSlides();
   const currentSlide = getCurrentSlideIndex();
   const current = slides[currentSlide];
