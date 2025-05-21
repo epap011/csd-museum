@@ -105,8 +105,18 @@
   }
 
   .slide-content .header {
-    padding: 0 1em;
+    padding: 0 clamp(1em, 4vw, 2em);
     text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .slide-content .header h1 {
+    margin: 1.5em 0 0 0;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    word-break: break-word;
+    white-space: normal;
+    width: 100%;
   }
 
   .year-slide .year-heading {
