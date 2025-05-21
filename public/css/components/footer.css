@@ -1,4 +1,4 @@
-#banner {
+#footer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -7,34 +7,36 @@
   background-color: #ffffff;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
   padding: 0 2em;
   gap: 2em;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   flex-wrap: wrap;
 }
-  
-#banner img {
+
+#footer img {
   height: 80px;
-  max-height: 100%;
   object-fit: contain;
   transition: transform 0.2s ease;
 }
 
-#banner img:hover {
+#footer img:hover {
   transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  #banner {
+  #footer {
     height: 60px;
+    padding: 0 1em;
     justify-content: center;
     gap: 1em;
-    padding: 0.5em;
+    max-width: 100vw;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
   }
 
-  #banner img {
+  #footer img {
     height: 50px;
   }
 
@@ -42,4 +44,3 @@
     display: none;
   }
 }
-  

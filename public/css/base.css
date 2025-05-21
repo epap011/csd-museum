@@ -6,6 +6,12 @@
   --font-family-mono: 'Victor Mono', monospace;
 }
 
+/* TEMPORARY DEBUG */
+html, body {
+  outline: 1px dashed red;
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -35,6 +41,7 @@ h1 {
 @media (max-width: 768px) {
   body {
     padding-bottom: var(--padding-bottom-mobile);
+    overflow-x: hidden;
   }
 
   h1 {

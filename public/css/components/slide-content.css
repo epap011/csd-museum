@@ -1,6 +1,7 @@
 /* slide-content.css */
 
 #slide-container {
+  padding-bottom: 120px;
   width: 100%;
   padding: 0 clamp(1em, 3vw, 5em) 100px;
   font-size: clamp(1rem, 1vw, 1.3rem);
@@ -61,12 +62,16 @@
     font-size: 1.1rem;
     overflow-x: hidden;
     word-wrap: break-word;
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding-bottom: 120px;
   }
 
   .slide-content {
     flex-direction: column;
     padding: 0;
     gap: 0.5em;
+    min-width: auto;
     width: 100%;
     box-sizing: border-box;
   }
@@ -82,8 +87,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     box-sizing: border-box;
+    margin-top: 1em;
+    padding: 0 1em;
   }
 
   .slide-content .text {
@@ -93,9 +100,20 @@
     box-sizing: border-box;
     padding-left: 0;
     margin: 0;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.5;
   }
 
   .slide-content .header {
     padding: 0 1em;
+    text-align: center;
+  }
+
+  .year-slide .year-heading {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .year-slide .year-subtitle {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
   }
 }
