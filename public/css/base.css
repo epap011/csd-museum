@@ -1,16 +1,10 @@
 :root {
   --padding-bottom-desktop: 80px;
   --padding-bottom-mobile: 120px;
-  --primary-color: #0dbf18;
-  --highlight-color: #BF00FF;
+  --primary-color: #0cac17;
+  --highlight-color: #FFD600;
   --font-family-mono: 'Victor Mono', monospace;
 }
-
-/* TEMPORARY DEBUG */
-html, body {
-  outline: 1px dashed red;
-}
-
 
 body {
   margin: 0;
@@ -38,10 +32,18 @@ h1 {
   letter-spacing: 1.5px;
 }
 
+@media screen and (min-width: 2500px) and (max-width: 2650px) and (min-height: 1350px) and (max-height: 1500px) {
+  body {
+    color: #00FF41;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding-bottom: var(--padding-bottom-mobile);
     overflow-x: hidden;
+    color: #0cac17;
+    background-color: rgb(15, 15, 15);
   }
 
   h1 {

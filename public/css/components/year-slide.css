@@ -18,6 +18,7 @@
     0 0 20px #00ffcc,
     0 0 40px #00ffcc;
   animation: flicker 2s infinite;
+  color: #b21ecf;
 }
 
 .year-subtitle {

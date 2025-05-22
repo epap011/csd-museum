@@ -21,7 +21,13 @@
   { "type": "content", "path": "/slides/sun3-280s-8.md" },
   
   { "type": "year", "year": 1991, "text": "Convex C-120 Vector Processor launched" },
-  { "type": "content", "path": "/slides/convex-c-120-candia.md" }
+  { "type": "content", "path": "/slides/convex-c-120-candia.md" },
+
+  { "type": "content", "path": "/slides/ibm-3370.md" },
+  { "type": "content", "path": "/slides/RA60.md" },
+  { "type": "content", "path": "/slides/RL02.md" },
+  { "type": "content", "path": "/slides/TU80.md" },
+  { "type": "content", "path": "/slides/TU81-plus.md" }
 ]
 
   
